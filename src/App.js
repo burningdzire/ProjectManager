@@ -5,6 +5,7 @@ import Projects from './Components/Projects'
 import AddProject from './Components/AddProject'
 import ToDos from './Components/ToDos'
 import uuid from 'uuid'
+import Axios from 'axios'
 // import ReactDOM from 'react-dom';
 
 
@@ -15,6 +16,20 @@ class App extends Component {
       projects: [],
       todos: []
     }
+  }
+
+  getTodoAxios() {
+    Axios({
+      method:'get',
+      url:'https://jsonplaceholder.typicode.com/todos',
+      responseType:'json'
+    })
+    .then(function(response) {
+      console.log(response.data);
+      // this.setState({ todos: response.data });
+    }).catch (function(error) {
+      console.log(error);
+    });
   }
 
   getToDo() {
