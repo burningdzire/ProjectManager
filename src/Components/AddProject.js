@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid'
 // import ReactDOM from 'react-dom';
 
 class AddProject extends Component {
@@ -25,6 +26,7 @@ class AddProject extends Component {
         }
         else {
             this.setState({newProject : {
+                    id:uuid.v4(),
                     title: this.refs.title.value,
                     category: this.refs.category.value
                 }}, function() {
@@ -33,7 +35,7 @@ class AddProject extends Component {
         }
         e.preventDefault();
     }
-    
+
     render() {
         let categoryOptions = this.props.categories.map(category => {
             return <option key={category} value={category}>{category}</option>
@@ -46,12 +48,14 @@ class AddProject extends Component {
                         <label>Title</label> <br />
                         <input type="text" ref="title" />
                     </div>
+                    <br />
                     <div>
                         <label>Using</label> <br />
                         <select ref="category">
                             {categoryOptions}
                         </select>
                     </div>
+                    <br />
                     <div>
                         <input type="submit" value="Submit" />
                     </div>
